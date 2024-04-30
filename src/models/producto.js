@@ -15,10 +15,6 @@ const productoSchema = mongoose.Schema({
     descripcion: {
         type: String,
         required: true,
-    },
-    cantidadDisponible: {
-        type: Number,
-        required: true,
-    },
+    }
 });
 module.exports = mongoose.model("producto", productoSchema);
