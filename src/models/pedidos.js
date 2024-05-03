@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"); // importando el componente mogoose
 const inventario = require("./inventario");
 const user = require("./user");
-const listaDeseo = mongoose.Schema({
+const pedidos = mongoose.Schema({
     producto: {
         type: any,
         required: true,
@@ -9,7 +9,10 @@ const listaDeseo = mongoose.Schema({
     user: {
         type: String,
         required: true,
+    },
+    estado: {
+        type: String,
+        required: true,
     }
-   
 });
-module.exports = mongoose.model("listaDeseo", listaDeseoSchemaSchema);
+module.exports = mongoose.model("pedidos", pedidosSchemaSchema);

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router(); //manejador de rutas de express
+<<<<<<< HEAD
 const productoSchema = require("../models/producto");
 //Nuevo producto
 router.post("/productos", (req, res) => {
@@ -9,10 +10,18 @@ router.post("/productos", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+=======
+const inventarioSchema = require("../models/inventario");
+
+>>>>>>> 7a3ceb7a46bc866a5c925060384291cd53c8cb75
 module.exports = router;
-//CONSULTAR TODOS LOS ANIMALES
+//CONSULTAR TODOS LOS PRODUCTOS
 router.get("/productos", (req, res) => {
+<<<<<<< HEAD
     productoSchema.find()
+=======
+    inventarioSchema.find()
+>>>>>>> 7a3ceb7a46bc866a5c925060384291cd53c8cb75
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
@@ -20,6 +29,7 @@ router.get("/productos", (req, res) => {
 //Consultar un producto por su nombre
 router.get("/productos/:nombre", (req, res) => {
     const { nombre } = req.params;
+<<<<<<< HEAD
     productoSchema
         .findById(nombre)
         .then((data) => res.json(data))
@@ -53,3 +63,10 @@ router.delete("/productos/:id", (req, res) => {
 });
 
 
+=======
+    inventarioSchema
+        .findById(nombre)
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+>>>>>>> 7a3ceb7a46bc866a5c925060384291cd53c8cb75
