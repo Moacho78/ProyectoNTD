@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router(); //manejador de rutas de express
-const listaDeseoSchema = require("../models/listaRoutes");
+const listaDeseoSchema = require("../models/listaDeseos");
 //Nuevo producto a la lista de deseos
 router.post("/listaDeseos", (req, res) => {
     const producto = listaDeseoSchema(req.body);
@@ -13,6 +13,16 @@ module.exports = router;
 router.get("/listaDeseos/:nombre", (req, res) => {
     const { nombre } = req.params;
     listaDeseoSchema
+        .findById(nombre)
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+
+//Consultar un producto por su nombre
+router.get("/listaDeseos/:nombre", (req, res) => {
+    const { nombre } = req.params;
+
+  listaDeseoSchema
         .findById(nombre)
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
