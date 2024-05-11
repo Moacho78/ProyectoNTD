@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema({
     fechaNacimiento: {
         type: Date,
         required: true
+    },
+    rol:{
+    type : Number,
+    required : true   
     }
 });
 userSchema.methods.encryptClave = async (clave) => {

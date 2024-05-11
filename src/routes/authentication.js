@@ -5,12 +5,15 @@ const router = express.Router(); //manejador de rutas de express
 const userSchema = require("../models/user");
 
 router.post('/signup', async (req, res) => {
-    const { usuario, correo, clave } = req.body;
+    const { nombre, apellido, correo,clave,telefono,fechaNacimiento} = req.body;
     const user = new userSchema({
-        usuario: usuario,
-        correo: correo,
-        clave: clave
-
+       nombre:nombre,
+       apellido:apellido,
+       correo:correo,
+       clave:clave,
+       telefono:telefono,
+       fechaNacimiento:fechaNacimiento,
+       rol:1
     });
     const user1 = await userSchema.findOne({ correo: req.body.correo });
     //validando si  se encuentra
