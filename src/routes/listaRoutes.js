@@ -61,7 +61,7 @@ router.post("/listaDeseos", async (req, res) => {
     try {
        
        // Encuentra todos los pedidos asociados con el usuario dado
-       const userLista = await listaDeseosSchema.find({ user: userId });
+       const userLista = await listaDeseosSchema.findOne({ user: userId });
  
        // Verifica si el usuario tiene pedidos
        if (!userLista || userLista.length === 0) {
