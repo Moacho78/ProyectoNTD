@@ -9,7 +9,7 @@ router.post("/inventario", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
-module.exports = router;
+
 //CONSULTAR TODOS LOS PRODUCTOS
 router.get("/inventario", (req, res) => {
     inventarioSchema.find()
@@ -29,10 +29,10 @@ router.get("/inventario/:nombre", (req, res) => {
 //Modificar un producto por su id 
 router.put("/inventario/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre, edad, tipo, fecha } = req.body;
+    const { nombre, precio, descripcion, cantidadDisponible } = req.body;
     inventarioSchema
         .updateOne({ _id: id }, {
-            $set: { nombre, edad, tipo, fecha }
+            $set: { nombre,precio,descripcion,cantidadDisponible }
         })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
@@ -51,3 +51,4 @@ router.delete("/inventario/:id", (req, res) => {
             res.json({ message: error });
         });
 });
+module.exports = router;

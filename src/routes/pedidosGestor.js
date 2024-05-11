@@ -21,7 +21,7 @@ router.post("/pedidos", async (req, res) => {
                 // Puedes añadir más campos según lo necesites
                 producto: productoConsulta._id, // Se guarda la referencia al producto encontrado
                user:userConsulta._id,
-               estado:"En procesamiento",
+               estado:"Pendiente",
 
                 // Otros campos del pedido...
             });
