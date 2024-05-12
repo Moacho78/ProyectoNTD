@@ -16,8 +16,10 @@ router.post('/signup', async (req, res) => {
        rol:1
     });
     const user1 = await userSchema.findOne({ correo: req.body.correo });
+    const telefonoVali= await userSchema.findOne({telefono: req.body.telefono})
     //validando si  se encuentra
     if (user1) return res.status(400).json({ error: "Usuario ya existe" });
+   if(telefonoVali) return res.status(400).json({ error: "Usuario ya existe." });
     user.clave = await user.encryptClave(user.clave);
     await user.save(); //save es un método de mongoose para guardar datos en MongoDB 
     // res.json(user);

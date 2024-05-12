@@ -2,12 +2,25 @@ const express = require("express");
 const router = express.Router(); //manejador de rutas de express
 const inventarioSchema = require("../models/inventario");
 //Nuevo producto
-router.post("/inventario", (req, res) => {
-    const inventario = inventarioSchema(req.body);
-    inventario
-        .save() //guardar
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
+router.post("/inventario",async (req, res) => {
+   const{codigo,nombre,precio,categoria,descripcion,cantidadDisponible}=req.body;
+   const producto = new inventarioSchema({
+    codigo:codigo,
+    nombre:nombre,
+    precio:precio,
+    categoria:categoria,
+    descripcion:descripcion,
+    cantidadDisponible:cantidadDisponible
+   });
+
+   const consultarCodigo= await inventarioSchema.findOne({codigo: req.body.codigo});
+   if(consultarCodigo) return res.status(400).json({ error: " El Producto ya se encuentra registrado" });
+   await producto.save(); //save es un método de mongoose para guardar datos en MongoDB 
+   // res.json(user);
+   res.json({
+       message: "Producto guardado en el inventario."
+   });
+
 });
 
 //CONSULTAR TODOS LOS PRODUCTOS
